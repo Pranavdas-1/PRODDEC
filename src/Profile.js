@@ -14,6 +14,7 @@ function Profile({ data }) {
     };
   }, [image]);
 
+  
   return (
     <div>
       <div className="bar"></div>
