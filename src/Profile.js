@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import LazyLoad from 'react-lazyload';
 
 function Profile({ data }) {
   const [name, position, acade1, acade2, email, room, pos1, pos2, pos3, showPositions, image] = data;
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = image;
+
+    img.onload = () => {
+      setIsLoaded(true);
+    };
+  }, [image]);
 
   return (
     <div>
@@ -15,7 +26,13 @@ function Profile({ data }) {
       <img className="cec" src="https://firebasestorage.googleapis.com/v0/b/teachers-screen.appspot.com/o/images%2Fcec%20logo.png?alt=media&token=bc582e27-fbf9-46be-9631-259988f78dfc" alt="CEC Logo" />
       <div className="main">
         <div className="main_left">
-          <img name="slide" className="image" src={image} alt={name} />
+          {isLoaded ? (
+            <LazyLoad height={200} offset={100}>
+              <img name="slide" className="image" src={image} alt={name} />
+            </LazyLoad>
+          ) : (
+            <div>Loading Image...</div>
+          )}
         </div>
         <div className="main_right">
           <div className="acca">
@@ -35,16 +52,20 @@ function Profile({ data }) {
               <p id="mail_2">{room}</p>
             </span>
           </div>
-          <div className="poss">
-            <p className="posi">Positions Handled</p>
-          </div>
-          <div id="myDiv">
-            <ul className="posi_1">
-              {pos1 && <li id="posi-1">{pos1}</li>}
-              {pos2 && <li id="posi-2">{pos2}</li>}
-              {pos3 && <li id="posi-3">{pos3}</li>}
-            </ul>
-          </div>
+          {showPositions && (
+            <div>
+              <div className="poss">
+                <p className="posi">Positions Handled</p>
+              </div>
+              <div id="myDiv">
+                <ul className="posi_1">
+                  {pos1 && <li id="posi-1">{pos1}</li>}
+                  {pos2 && <li id="posi-2">{pos2}</li>}
+                  {pos3 && <li id="posi-3">{pos3}</li>}
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="pro">
