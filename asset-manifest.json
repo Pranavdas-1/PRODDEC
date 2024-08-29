@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/PRODDEC/static/css/main.e8b02544.css",
+    "main.js": "/PRODDEC/static/js/main.4d054cef.js",
+    "index.html": "/PRODDEC/index.html",
+    "main.e8b02544.css.map": "/PRODDEC/static/css/main.e8b02544.css.map",
+    "main.4d054cef.js.map": "/PRODDEC/static/js/main.4d054cef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8b02544.css",
+    "static/js/main.4d054cef.js"
+  ]
+}
