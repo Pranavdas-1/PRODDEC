@@ -1,17 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
-import LazyLoad from 'react-lazyload';
 
 function Profile({ data }) {
   const [name, position, acade1, acade2, email, room, pos1, pos2, pos3, showPositions, image] = data;
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Preload the image and set its loaded state
   useEffect(() => {
     const img = new Image();
     img.src = image;
 
     img.onload = () => {
-      setIsLoaded(true);
+      setIsLoaded(true); // Set to true when the image has loaded
     };
   }, [image]);
 
@@ -24,15 +23,17 @@ function Profile({ data }) {
           <h5 className="position">{position}</h5>
         </div>
       </div>
-      <img className="cec" src="https://firebasestorage.googleapis.com/v0/b/teachers-screen.appspot.com/o/images%2Fcec%20logo.png?alt=media&token=bc582e27-fbf9-46be-9631-259988f78dfc" alt="CEC Logo" />
+      <img
+        className="cec"
+        src="https://firebasestorage.googleapis.com/v0/b/teachers-screen.appspot.com/o/images%2Fcec%20logo.png?alt=media&token=bc582e27-fbf9-46be-9631-259988f78dfc"
+        alt="CEC Logo"
+      />
       <div className="main">
         <div className="main_left">
           {isLoaded ? (
-            <LazyLoad height={200} offset={100}>
-              <img name="slide" className="image" src={image} alt={name} />
-            </LazyLoad>
+            <img name="slide" className="image" src={image} alt={name} />
           ) : (
-            <div>Loading Image...</div>
+            <div>Loading Image...</div> // Show loading text while the image is being loaded
           )}
         </div>
         <div className="main_right">
