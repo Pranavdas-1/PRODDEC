@@ -4,13 +4,13 @@ function Profile({ data }) {
   const [name, position, acade1, acade2, email, room, pos1, pos2, pos3, showPositions, image] = data;
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Preload the image and set its loaded state
+  
   useEffect(() => {
     const img = new Image();
     img.src = image;
 
     img.onload = () => {
-      setIsLoaded(true); // Set to true when the image has loaded
+      setIsLoaded(true); 
     };
   }, [image]);
 
@@ -33,7 +33,7 @@ function Profile({ data }) {
           {isLoaded ? (
             <img name="slide" className="image" src={image} alt={name} />
           ) : (
-            <div>Loading Image...</div> // Show loading text while the image is being loaded
+            <div>Loading Image...</div> 
           )}
         </div>
         <div className="main_right">
@@ -57,7 +57,7 @@ function Profile({ data }) {
           {showPositions && (
             <div>
               <div className="poss">
-                <p className="posi">Positions Handled</p>
+                {pos1 && <p className="posi">Positions Handled</p>}
               </div>
               <div id="myDiv">
                 <ul className="posi_1">
